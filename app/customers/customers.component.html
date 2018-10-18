@@ -1,0 +1,24 @@
+<h1>Customers</h1>
+
+<p>This customers component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!customers"><em>Loading...</em></p>
+<button (click)="getCustomerData()">Get Customers</button>
+<input type="text" [(ngModel)]="queryString" placeholder="search by name">
+
+<table class='table' *ngIf="customers">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cust of customers | filterdata: queryString: 'name' " (click)=onSelect(cust)>
+      <td>{{ cust.id }}</td>
+      <td>{{ cust.name }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<app-customer-details [customer]="selectedCustomer" ></app-customer-details>

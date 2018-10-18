@@ -1,0 +1,19 @@
+<h1>Customers Register</h1>
+
+<p>This component demonstrates fetching data to the server.</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  <div class="form-group">
+    <input type="text" formControlName="name" id="name" placeholder="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+    <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
+    <em *ngIf="validateControl('name') && hasError('name', 'maxlength')">Maximum allowed length is 60 characters.</em>
+
+    <input type="text" formControlName="address" id="address" placeholder="Address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+
+    <div class="form-group">
+      <div class="col-md-offset-5 col-md-1">
+        <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
